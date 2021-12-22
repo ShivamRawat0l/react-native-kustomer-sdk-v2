@@ -32,13 +32,13 @@ RCT_EXTERN_METHOD(chatAssistant:(NSString *)chatId
 RCT_EXTERN_METHOD(chatVisible:(RCTPromiseResolveBlock)resolve
                  withRejecter:(RCTPromiseRejectBlock)reject)
 RCT_EXTERN_METHOD(openNewConversation:(NSString *)initialMessage
-                 withAnimated:(bool)animated
+                 withAnimated:(BOOL)animated
                  withResolver:(RCTPromiseResolveBlock)resolve
                  withRejecter:(RCTPromiseRejectBlock)reject)
-RCT_EXTERN_METHOD(openConversationByID:(char*)conversationID
+RCT_EXTERN_METHOD(openConversationByID:(NSString *)conversationID
                  withResolver:(RCTPromiseResolveBlock)resolve
                  withRejecter:(RCTPromiseRejectBlock)reject)
-RCT_EXTERN_METHOD(setActiveAssistant:(char*)assistantID
+RCT_EXTERN_METHOD(setActiveAssistant:(NSString *)assistantID
                  withResolver:(RCTPromiseResolveBlock)resolve
                  withRejecter:(RCTPromiseRejectBlock)reject)
 RCT_EXTERN_METHOD(openKBbyID:(NSString *)kbID
@@ -48,7 +48,7 @@ RCT_EXTERN_METHOD(getUnreadCount:(RCTPromiseResolveBlock)resolve
                  withRejecter:(RCTPromiseRejectBlock)reject)
 RCT_EXTERN_METHOD(getOpenConversationCount:(RCTPromiseResolveBlock)resolve
                  withRejecter:(RCTPromiseRejectBlock)reject)
-RCT_EXTERN_METHOD(closeChat:(bool)animated
+RCT_EXTERN_METHOD(closeChat:(BOOL)animated
                  withResolver:(RCTPromiseResolveBlock)resolve
                  withRejecter:(RCTPromiseRejectBlock)reject)
 RCT_EXTERN_METHOD(describeCustomer: (NSDictionary *)data)
