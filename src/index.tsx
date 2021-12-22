@@ -111,8 +111,8 @@ export function getOpenConversationCount(): Promise<boolean> {
   return KustomerSdk.getOpenConversationCount();
 }
 
-export function closeChat(): Promise<boolean> | void {
-  if (Platform.OS === 'ios') return KustomerSdk.closeChat();
+export function closeChat(animated:boolean): Promise<boolean> | void {
+  if (Platform.OS === 'ios') return KustomerSdk.closeChat(animated);
   // Close Chat function not available in androi
 }
 

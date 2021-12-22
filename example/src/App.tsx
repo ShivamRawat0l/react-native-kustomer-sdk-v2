@@ -38,7 +38,7 @@ export default function App() {
       />
       <Button
         onPress={() => {
-          closeChat();
+          closeChat(true);
         }}
         title="Close Chat"
       />
