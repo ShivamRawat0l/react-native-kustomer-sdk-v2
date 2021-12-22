@@ -1,4 +1,5 @@
 
+
 # ![Kustomer SDK V2 React Native](https://i.imgur.com/mcHJ1s8.png)
 This is a wrapper for Kustomer v2 Sdk for react native. This implements the kustomer v2 for android and ios.
 Functions available for android and ios are available on react native.
@@ -60,8 +61,36 @@ public  void  onCreate()  {
 ```
 The above code will show the toast if the API key is invalid.
 
-- In case of allowBackup error 
-set `android:allowBackup="true"` in the AndroidManifest.xml file
+###   In case of allowBackup error
+Either make following changes in AndroidManifest.xml
+
+```groovy
+//This is preffered because it overrides all sub androidManifest files with allowBackup true.
+<manifest
+	...
+	xmlns:tools="http://schemas.android.com/tools"
+>
+	...
+	<application
+		...
+		tools:replace="android:allowBackup"
+	>
+```
+
+or
+
+following changes in the AndroidManifest.xml file
+```groovy
+	...
+	<application
+		...
+		android:allowBackup="true"  //Change from false to true
+	>
+```
+
+To read more about [allowBackup](https://betterprogramming.pub/androids-attribute-android-allowbackup-demystified-114b88087e3b).
+
+## Usage
 
 Import the library to use its methods:
 ```javascript
