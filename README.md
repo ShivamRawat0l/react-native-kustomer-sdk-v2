@@ -1,6 +1,13 @@
 
 
 # ![Kustomer SDK V2 React Native](https://i.imgur.com/mcHJ1s8.png)
+
+![last-commit](https://img.shields.io/github/last-commit/ShivamRawat0l/react-native-kustomer-sdk-v2)
+![repo-size](https://img.shields.io/github/repo-size/ShivamRawat0l/react-native-kustomer-sdk-v2)
+![license](https://img.shields.io/github/license/ShivamRawat0l/react-native-kustomer-sdk-v2)
+![npm-version](https://img.shields.io/npm/v/react-native-kustomer-sdk-v2)
+
+
 This is a wrapper for Kustomer v2 Sdk for react native. This implements the kustomer v2 for android and ios.
 Functions available for android and ios are available on react native.
 
