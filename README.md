@@ -6,8 +6,10 @@ Functions available for android and ios are available on react native.
 ## Getting started
 
 `$ npm install react-native-kustomer-sdk-v2 --save`
+
 or
-`$ yarn react-native-kustomer-sdk-v2`
+
+`$ yarn add react-native-kustomer-sdk-v2`
 
 ## Requirements
 
