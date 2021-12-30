@@ -41,7 +41,6 @@ class KustomerSdkModule(reactContext: ReactApplicationContext) : ReactContextBas
         //  Log.i("Kustomer:","Kustomer is initialized ${it.dataOrNull}")
         //}
         //For android this is initialized directly from the mainapplication.java
-
         promise.resolve(true);
     }
 
@@ -53,15 +52,20 @@ class KustomerSdkModule(reactContext: ReactApplicationContext) : ReactContextBas
 
     @ReactMethod
     fun logIn (jwt: String, promise: Promise) {
-      Kustomer.getInstance().logIn(jwt){
-        when (it) {
-          is KusResult.Success -> {
-            promise.resolve(it.data);
-          }
-          is KusResult.Error -> {
-            promise.reject(it.exception.localizedMessage);
+      try{
+        Kustomer.getInstance().logIn(jwt){
+          when (it) {
+            is KusResult.Success -> {
+              promise.resolve(it.data);
+            }
+            is KusResult.Error -> {
+              promise.reject(it.exception.localizedMessage);
+            }
           }
         }
+      }
+      catch(e:Exception){
+        promise.reject("Error occured while login");
       }
     }
 
@@ -73,56 +77,70 @@ class KustomerSdkModule(reactContext: ReactApplicationContext) : ReactContextBas
 
     @ReactMethod
     fun open (type : String,promise: Promise ) {
-      when(type){
-        "default" -> {
-          Kustomer.getInstance().open(KusWidgetType.DEFAULT);
-          promise.resolve(true);
+      try {
+        when(type){
+          "default" -> {
+            Kustomer.getInstance().open(KusWidgetType.DEFAULT);
+            promise.resolve(true);
+          }
+          "chat_kb" -> {
+            Kustomer.getInstance().open(KusWidgetType.CHAT_KB);
+            promise.resolve(true);
+          }
+          "chat_only" -> {
+            Kustomer.getInstance().open(KusWidgetType.CHAT_ONLY);
+            promise.resolve(true);
+          }
+          "kb_only" -> {
+            Kustomer.getInstance().open(KusWidgetType.KB_ONLY);
+            promise.resolve(true);
+          }
+          else -> {
+            promise.reject("Unknown type passed");
+          }
         }
-        "chat_kb" -> {
-          Kustomer.getInstance().open(KusWidgetType.CHAT_KB);
-          promise.resolve(true);
-        }
-        "chat_only" -> {
-          Kustomer.getInstance().open(KusWidgetType.CHAT_ONLY);
-          promise.resolve(true);
-        }
-        "kb_only" -> {
-          Kustomer.getInstance().open(KusWidgetType.KB_ONLY);
-          promise.resolve(true);
-        }
-        else -> {
-          promise.reject("Unknown type passed");
-        }
+      }
+      catch(e:Exception){
+        promise.reject("Make sure API key is valid");
       }
     }
 
     @ReactMethod
     fun openNewConversation(initialMessage: String,promise : Promise){
-      Kustomer.getInstance()
-      .openNewConversation(initialMessage){ result: KusResult<KusConversation> ->
-            when (result) {
-                is KusResult.Success -> {
-                  promise.resolve(result.data.id)
+      try {
+        Kustomer.getInstance()
+        .openNewConversation(initialMessage){ result: KusResult<KusConversation> ->
+              when (result) {
+                  is KusResult.Success -> {
+                    promise.resolve(result.data.id)
+                  }
+                  else -> {
+                    promise.reject("An error occurred")
+                  }
                 }
-                else -> {
-                  promise.reject("An error occurred")
-                }
-            }
-        }
+              }
+          }
+      catch(e:Exception){
+        promise.reject("An error occurred")
+      }
     }
 
     @ReactMethod
     fun openConversationByID(conversationID: String,promise : Promise){
-      Kustomer.getInstance()
-      .openConversationWithId(conversationID) { result: KusResult<KusConversation> ->
-        when (result) {
-          is KusResult.Success -> {
-            promise.resolve("success")
-          }
-          is KusResult.Error -> {
-            promise.reject("error")
+      try {
+        Kustomer.getInstance()
+        .openConversationWithId(conversationID) { result: KusResult<KusConversation> ->
+          when (result) {
+            is KusResult.Success -> {
+              promise.resolve("success")
+            }
+            is KusResult.Error -> {
+              promise.reject("error")
+            }
           }
         }
+      catch(e:Exception){
+        promise.reject("An error occured")
       }
     }
 
